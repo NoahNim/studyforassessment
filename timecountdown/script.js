@@ -3,11 +3,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
     let timeForm = document.getElementById("time-form");
     let countdownEle = document.getElementById("countdown");
  
-    const countDown = () => {
+    const countDown = (endDate) => {
+        let theCountEnd = new Date(endDate)
         let theCountStart = new Date();
-        console.log('SUBMITTED DATE: ', selectedDate.value);
+        console.log('SUBMITTED DATE: ', theCountEnd);
         console.log('CURRENT TIME: ', theCountStart);
-        let timeDistance = selectedDate.value - theCountStart;
+        let timeDistance = theCountEnd.getTime() - theCountStart.getTime();
         console.log(timeDistance);
         let second = 1000;
         let minute = second * 60;
@@ -35,6 +36,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     timeForm.addEventListener("submit", (event) => {
         event.preventDefault();
         // countdownEle.innerHTML = selectedTime.value;
-        countDown();
+        countDown(selectedDate.value);
     });
 });
