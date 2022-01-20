@@ -5,7 +5,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
  
     const countDown = () => {
         let theCountStart = new Date();
+        console.log('SUBMITTED DATE: ', selectedTime.value);
+        console.log('CURRENT TIME: ', theCountStart);
         let timeDistance = selectedTime.value - theCountStart;
+        console.log(timeDistance);
         let second = 1000;
         let minute = second * 60;
         let hour = minute * 60;
