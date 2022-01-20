@@ -1,13 +1,13 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-    let selectedTime = document.getElementById("time");
+    let selectedDate = document.getElementById("date");
     let timeForm = document.getElementById("time-form");
     let countdownEle = document.getElementById("countdown");
  
     const countDown = () => {
         let theCountStart = new Date();
-        console.log('SUBMITTED DATE: ', selectedTime.value);
+        console.log('SUBMITTED DATE: ', selectedDate.value);
         console.log('CURRENT TIME: ', theCountStart);
-        let timeDistance = selectedTime.value - theCountStart;
+        let timeDistance = selectedDate.value - theCountStart;
         console.log(timeDistance);
         let second = 1000;
         let minute = second * 60;
