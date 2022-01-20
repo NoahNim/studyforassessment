@@ -6,6 +6,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     timeForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        countdownEle.innerHTML = selectedTime;
+        countdownEle.innerHTML = selectedTime.value;
     });
 });
