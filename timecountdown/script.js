@@ -27,6 +27,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 clearInterval(timer);
                 countdownEle.innerHTML = "THE TIMER IS OVER CONGRATS";
                 localStorage.clear();
+                document.getElementById("submit").style.pointerEvents = "auto";
+                document.getElementById("submit").hidden = false;
                 return;
             }
 
@@ -36,8 +38,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
         timer = setInterval(timeDown, 1000);
     }
 
-    if (localStorage.getItem('counter')) {
+    if (localStorage.getItem('counter') && localStorage.getItem('datedown')) {
+        document.getElementById("submit").style.pointerEvents = "none";
         countdownEle.addEventListener("change", countDown(localStorage.getItem('counter')))
+        document.getElementById("submit").style.pointerEvents = "none";
+        document.getElementById("submit").hidden = true;
         countdownEle.innerHTML = localStorage.getItem('counter');
         dateCounting.innerHTML = localStorage.getItem('datedown');
     }
@@ -45,7 +50,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
     timeForm.addEventListener("submit", (event) => {
         event.preventDefault();
         countdownEle.addEventListener("change", countDown(selectedDate.value));
+        document.getElementById("submit").style.pointerEvents = "none";
+        document.getElementById("submit").hidden = true;
         dateCounting.innerHTML = selectedDate.value;
-        // localStorage.setItem('datedown', dateCounting.innerHTML);
+
     });
 });
