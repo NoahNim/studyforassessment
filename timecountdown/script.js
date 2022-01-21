@@ -3,6 +3,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
     let timeForm = document.getElementById("time-form");
     let countdownEle = document.getElementById("countdown");
 
+    // if () {
+
+    // }
+
     const countDown = (endDate) => {
         let theCountEnd = new Date(endDate)
         let second = 1000;
@@ -27,6 +31,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
             }
 
             countdownEle.innerHTML = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`
+            let countStorage = countdownEle.innerHTML
+            localStorage.setItem('count', countStorage);
         }
 
         timer = setInterval(timeDown, 1000);
