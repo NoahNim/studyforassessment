@@ -13,6 +13,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         let timer;
 
         localStorage.setItem('counter', theCountEnd);
+        localStorage.setItem('datedown', theCountEnd);
 
         function timeDown() {
             let theCountStart = new Date();
@@ -29,7 +30,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 return;
             }
 
-            countdownEle.innerHTML = `${days} days ${hours} hours ${minutes} minutes ${seconds}`
+            countdownEle.innerHTML = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`
         }
 
         timer = setInterval(timeDown, 1000);
@@ -38,10 +39,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
     if (localStorage.getItem('counter')) {
         countdownEle.addEventListener("change", countDown(localStorage.getItem('counter')))
         countdownEle.innerHTML = localStorage.getItem('counter');
+        dateCounting.innerHTML = localStorage.getItem('datedown');
     }
 
     timeForm.addEventListener("submit", (event) => {
         event.preventDefault();
         countdownEle.addEventListener("change", countDown(selectedDate.value));
+        dateCounting.innerHTML = selectedDate.value;
+        // localStorage.setItem('datedown', dateCounting.innerHTML);
     });
 });
