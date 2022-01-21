@@ -2,11 +2,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     let selectedDate = document.getElementById("date");
     let timeForm = document.getElementById("time-form");
     let countdownEle = document.getElementById("countdown");
-
-    if (localStorage.getItem('count') !== null) {
-        console.log(localStorage.getItem('count'));
-        countdownEle.innerHTML = localStorage.getItem('count');
-    }
+    let dateCounting = document.getElementById("date-counting-to")
 
     const countDown = (endDate) => {
         let theCountEnd = new Date(endDate)
@@ -16,6 +12,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         let day = hour * 24;
         let timer;
 
+        localStorage.setItem('counter', theCountEnd);
 
         function timeDown() {
             let theCountStart = new Date();
@@ -28,16 +25,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
             if (timeDistance <= 0) {
                 clearInterval(timer);
                 countdownEle.innerHTML = "THE TIMER IS OVER CONGRATS";
-                localStorage.removeItem('count');
+                localStorage.clear();
                 return;
             }
 
-            countdownEle.innerHTML = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`
-            let countStorage = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`
-            localStorage.setItem('count', countStorage);
+            countdownEle.innerHTML = `${days} days ${hours} hours ${minutes} minutes ${seconds}`
         }
 
         timer = setInterval(timeDown, 1000);
+    }
+
+    if (localStorage.getItem('counter')) {
+        countdownEle.addEventListener("change", countDown(localStorage.getItem('counter')))
+        countdownEle.innerHTML = localStorage.getItem('counter');
     }
 
     timeForm.addEventListener("submit", (event) => {
