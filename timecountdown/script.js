@@ -3,9 +3,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
     let timeForm = document.getElementById("time-form");
     let countdownEle = document.getElementById("countdown");
 
-    // if () {
-
-    // }
+    if (localStorage.getItem('count') !== null) {
+        console.log(localStorage.getItem('count'));
+        countdownEle.innerHTML = localStorage.getItem('count');
+    }
 
     const countDown = (endDate) => {
         let theCountEnd = new Date(endDate)
@@ -27,11 +28,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
             if (timeDistance <= 0) {
                 clearInterval(timer);
                 countdownEle.innerHTML = "THE TIMER IS OVER CONGRATS";
+                localStorage.removeItem('count');
                 return;
             }
 
             countdownEle.innerHTML = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`
-            let countStorage = countdownEle.innerHTML
+            let countStorage = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`
             localStorage.setItem('count', countStorage);
         }
 
